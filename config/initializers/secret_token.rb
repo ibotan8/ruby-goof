@@ -34,7 +34,7 @@ ActiveAdmin.register PaperTrail::Version do
         end
 
         if params[:class] && params[:id] # These parameters are passed by ActiveAdminHelper#link_to_audit_trail
-          render(Admin::CensorButtonComponent.new(url: url, value: value&.html_safe, authorized: authorized))
+          render(Admin::CensorButtonComponent.new(url: url, value: value.html_safe, authorized: authorized))
           f.input :medical_exam_type_option, as: :boolean, hint: t('activerecord.attributes.lifen_feature_set_integration.medical_exam_type_option_hint').html_safe
           flash.now.notice = "Un filtre non visible dans le panel de droite est actuellement appliqué, il vient des paramètres passés dans l'url. Pour le supprimer, cliquez #{view_context.link_to 'ici', admin_paper_trail_versions_path}.".html_safe # rubocop:disable Rails/OutputSafety
           # we want to show the versions of the object itself and the versions of its children
